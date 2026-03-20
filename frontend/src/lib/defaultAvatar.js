@@ -1,0 +1,3 @@
+// frontend/src/lib/defaultAvatar.js
+export const DEFAULT_AVATAR =
+  "https://in.images.search.yahoo.com/search/images;_ylt=Awrx_1GF6rxpRQIAwQu7HAx.;_ylu=Y29sbwNzZzMEcG9zAzEEdnRpZAMEc2VjA3BpdnM-?p=default+profile+whats+app&fr2=piv-web&fr=crmas#id=20&iurl=https%3A%2F%2Fstatic.vecteezy.com%2Fsystem%2Fresources%2Fpreviews%2F036%2F280%2F650%2Flarge_2x%2Fdefault-avatar-profile-icon-social-media-user-image-gray-avatar-icon-blank-profile-silhouette-illustration-vector.jpg&action=click";
