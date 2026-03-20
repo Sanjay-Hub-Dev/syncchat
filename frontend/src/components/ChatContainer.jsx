@@ -36,13 +36,13 @@ function ChatContainer() {
 
   if (!selectedUser) {
     return (
-      <div className="h-full flex items-center justify-center bg-gradient-to-br from-slate-50 via-white to-indigo-50">
+      <div className="h-full flex items-center justify-center bg-base-100">
         <div className="text-center max-w-md px-6">
-          <div className="w-20 h-20 mx-auto rounded-3xl bg-gradient-to-br from-indigo-500 to-violet-500 text-white flex items-center justify-center text-3xl font-bold shadow-lg mb-5">
+          <div className="w-20 h-20 mx-auto rounded-3xl bg-primary text-primary-content flex items-center justify-center text-3xl font-bold shadow-lg mb-5">
             S
           </div>
-          <h3 className="text-3xl font-semibold text-slate-800">Welcome to SyncChat</h3>
-          <p className="text-slate-500 mt-3 leading-relaxed">
+          <h3 className="text-3xl font-semibold">Welcome to SyncChat</h3>
+          <p className="text-base-content/70 mt-3 leading-relaxed">
             Select a conversation to start chatting in a clean real-time workspace.
           </p>
         </div>
@@ -95,39 +95,39 @@ function ChatContainer() {
   };
 
   return (
-    <div className="h-full flex flex-col bg-white">
-      <div className="px-6 py-4 border-b border-slate-200 bg-white flex items-center justify-between">
+    <div className="h-full flex flex-col bg-base-100">
+      <div className="px-6 py-4 border-b border-base-300 bg-base-100 flex items-center justify-between">
         <div className="flex items-center gap-3">
           <div className="relative">
             <img
               src={selectedUser.profilePic?.trim() ? selectedUser.profilePic : defaultProfile}
               alt={selectedUser.fullName}
-              className="w-12 h-12 rounded-full object-cover border-2 border-slate-100 shadow-sm"
+              className="w-12 h-12 rounded-full object-cover border border-base-300 shadow-sm"
             />
             <span
-              className={`absolute bottom-0 right-0 w-3.5 h-3.5 rounded-full border-2 border-white ${
-                isSelectedUserOnline ? "bg-emerald-500" : "bg-slate-300"
+              className={`absolute bottom-0 right-0 w-3.5 h-3.5 rounded-full border-2 border-base-100 ${
+                isSelectedUserOnline ? "bg-success" : "bg-base-300"
               }`}
             ></span>
           </div>
 
           <div>
-            <h2 className="text-lg font-semibold text-slate-900">{selectedUser.fullName}</h2>
-            <p className="text-sm text-slate-500">
+            <h2 className="text-lg font-semibold">{selectedUser.fullName}</h2>
+            <p className="text-sm text-base-content/70">
               {isSelectedUserOnline ? "Online now" : "Currently offline"}
             </p>
           </div>
         </div>
       </div>
 
-      <div className="flex-1 overflow-y-auto px-6 py-6 bg-gradient-to-b from-slate-50 via-slate-50 to-indigo-50/40">
+      <div className="flex-1 overflow-y-auto px-6 py-6 bg-base-200">
         {isMessagesLoading ? (
-          <p className="text-slate-500">Loading messages...</p>
+          <p className="text-base-content/70">Loading messages...</p>
         ) : messages.length === 0 ? (
           <div className="h-full flex items-center justify-center">
             <div className="text-center">
-              <p className="text-slate-700 font-medium text-lg">No messages yet</p>
-              <p className="text-slate-400 text-sm mt-1">Say hello and start the conversation</p>
+              <p className="font-medium text-lg">No messages yet</p>
+              <p className="text-base-content/70 text-sm mt-1">Say hello and start the conversation</p>
             </div>
           </div>
         ) : (
@@ -144,7 +144,7 @@ function ChatContainer() {
                   <div className="max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg">
                     <div className="group flex flex-col">
                       {hasOnlyImage ? (
-                        <div className="bg-white border border-slate-200 rounded-2xl p-2 shadow-md">
+                        <div className="bg-base-100 border border-base-300 rounded-2xl p-2 shadow-md">
                           <img
                             src={msg.image}
                             alt="sent"
@@ -155,8 +155,8 @@ function ChatContainer() {
                         <div
                           className={`rounded-2xl px-4 py-3 shadow-md ${
                             isOwnMessage
-                              ? "bg-gradient-to-r from-indigo-600 to-violet-600 text-white rounded-br-md"
-                              : "bg-white text-slate-800 border border-slate-200 rounded-bl-md"
+                              ? "bg-primary text-primary-content rounded-br-md"
+                              : "bg-base-100 text-base-content border border-base-300 rounded-bl-md"
                           }`}
                         >
                           {msg.text && (
@@ -166,7 +166,7 @@ function ChatContainer() {
                           )}
 
                           {msg.image && (
-                            <div className="mt-3 bg-white/95 rounded-xl p-2">
+                            <div className="mt-3 bg-base-100 rounded-xl p-2">
                               <img
                                 src={msg.image}
                                 alt="sent"
@@ -180,7 +180,7 @@ function ChatContainer() {
                       {isOwnMessage && (
                         <button
                           onClick={() => deleteMessage(msg._id)}
-                          className="mt-1 text-xs text-red-500 opacity-0 group-hover:opacity-100 transition self-end hover:underline"
+                          className="mt-1 text-xs text-error opacity-0 group-hover:opacity-100 transition self-end hover:underline"
                         >
                           Delete
                         </button>
@@ -196,16 +196,16 @@ function ChatContainer() {
       </div>
 
       {imagePreview && (
-        <div className="px-5 pt-4 bg-white border-t border-slate-200">
+        <div className="px-5 pt-4 bg-base-100 border-t border-base-300">
           <div className="relative w-28">
             <img
               src={imagePreview}
               alt="preview"
-              className="rounded-2xl border border-slate-200 shadow-sm"
+              className="rounded-2xl border border-base-300 shadow-sm"
             />
             <button
               type="button"
-              className="absolute -top-2 -right-2 w-7 h-7 rounded-full bg-slate-900 text-white text-xs shadow-md"
+              className="absolute -top-2 -right-2 w-7 h-7 rounded-full bg-neutral text-neutral-content text-xs shadow-md"
               onClick={() => {
                 setImagePreview("");
                 if (fileInputRef.current) fileInputRef.current.value = "";
@@ -219,12 +219,12 @@ function ChatContainer() {
 
       <form
         onSubmit={handleSend}
-        className="p-4 border-t border-slate-200 bg-white flex gap-3 items-center"
+        className="p-4 border-t border-base-300 bg-base-100 flex gap-3 items-center"
       >
         <input
           type="text"
           placeholder="Write a message..."
-          className="flex-1 h-12 px-4 rounded-2xl bg-slate-100 border border-slate-200 text-slate-800 placeholder:text-slate-400 outline-none focus:border-indigo-400 focus:ring-4 focus:ring-indigo-100 transition"
+          className="input input-bordered flex-1 rounded-2xl"
           value={text}
           onChange={(e) => setText(e.target.value)}
         />
@@ -239,13 +239,13 @@ function ChatContainer() {
 
         <button
           type="button"
-          className="h-12 px-5 rounded-2xl bg-white border border-slate-200 text-slate-700 hover:bg-slate-50 transition font-medium shadow-sm"
+          className="btn btn-outline rounded-2xl"
           onClick={() => fileInputRef.current?.click()}
         >
           Image
         </button>
 
-        <button className="h-12 px-6 rounded-2xl bg-gradient-to-r from-indigo-600 to-violet-600 text-white hover:from-indigo-700 hover:to-violet-700 transition font-medium shadow-md">
+        <button className="btn btn-primary rounded-2xl">
           Send
         </button>
       </form>

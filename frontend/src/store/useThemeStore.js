@@ -1,4 +1,3 @@
-// frontend/src/store/useThemeStore.js
 import { create } from "zustand";
 
 export const useThemeStore = create((set) => ({
