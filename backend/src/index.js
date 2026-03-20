@@ -37,6 +37,8 @@ app.use("/api/messages", messageRoutes);
 
 const __dirname = path.resolve();
 
+console.log("NODE_ENV:", process.env.NODE_ENV);
+
 if (process.env.NODE_ENV === "production") {
   app.use(express.static(path.join(__dirname, "frontend", "dist")));
 
