@@ -70,4 +70,16 @@ export const useChatStore = create((set, get) => ({
     const socket = useAuthStore.getState().socket;
     if (socket) socket.off("newMessage");
   },
+
+  deleteMessage: async (messageId) => {
+  try {
+    await axiosInstance.delete(`/messages/${messageId}`);
+
+    set({
+      messages: get().messages.filter((msg) => msg._id !== messageId),
+    });
+  } catch (error) {
+    toast.error(error.response?.data?.message || "Failed to delete message");
+  }
+},
 }));

@@ -9,6 +9,7 @@ function ChatContainer() {
     messages,
     getMessages,
     sendMessage,
+    deleteMessage,
     isMessagesLoading,
     subscribeToMessages,
     unsubscribeFromMessages,
@@ -99,7 +100,7 @@ function ChatContainer() {
         <div className="flex items-center gap-3">
           <div className="relative">
             <img
-              src={selectedUser.profilePic?.trim() ? selectedUser.profilePic : defaultProfile }
+              src={selectedUser.profilePic?.trim() ? selectedUser.profilePic : defaultProfile}
               alt={selectedUser.fullName}
               className="w-12 h-12 rounded-full object-cover border-2 border-slate-100 shadow-sm"
             />
@@ -141,39 +142,50 @@ function ChatContainer() {
                   className={`flex ${isOwnMessage ? "justify-end" : "justify-start"}`}
                 >
                   <div className="max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg">
-                    {hasOnlyImage ? (
-                      <div className="bg-white border border-slate-200 rounded-2xl p-2 shadow-md">
-                        <img
-                          src={msg.image}
-                          alt="sent"
-                          className="rounded-xl w-full object-cover"
-                        />
-                      </div>
-                    ) : (
-                      <div
-                        className={`rounded-2xl px-4 py-3 shadow-md ${
-                          isOwnMessage
-                            ? "bg-gradient-to-r from-indigo-600 to-violet-600 text-white rounded-br-md"
-                            : "bg-white text-slate-800 border border-slate-200 rounded-bl-md"
-                        }`}
-                      >
-                        {msg.text && (
-                          <p className="text-sm leading-relaxed whitespace-pre-wrap">
-                            {msg.text}
-                          </p>
-                        )}
+                    <div className="group flex flex-col">
+                      {hasOnlyImage ? (
+                        <div className="bg-white border border-slate-200 rounded-2xl p-2 shadow-md">
+                          <img
+                            src={msg.image}
+                            alt="sent"
+                            className="rounded-xl w-full object-cover"
+                          />
+                        </div>
+                      ) : (
+                        <div
+                          className={`rounded-2xl px-4 py-3 shadow-md ${
+                            isOwnMessage
+                              ? "bg-gradient-to-r from-indigo-600 to-violet-600 text-white rounded-br-md"
+                              : "bg-white text-slate-800 border border-slate-200 rounded-bl-md"
+                          }`}
+                        >
+                          {msg.text && (
+                            <p className="text-sm leading-relaxed whitespace-pre-wrap">
+                              {msg.text}
+                            </p>
+                          )}
 
-                        {msg.image && (
-                          <div className="mt-3 bg-white/95 rounded-xl p-2">
-                            <img
-                              src={msg.image}
-                              alt="sent"
-                              className="rounded-lg w-full object-cover"
-                            />
-                          </div>
-                        )}
-                      </div>
-                    )}
+                          {msg.image && (
+                            <div className="mt-3 bg-white/95 rounded-xl p-2">
+                              <img
+                                src={msg.image}
+                                alt="sent"
+                                className="rounded-lg w-full object-cover"
+                              />
+                            </div>
+                          )}
+                        </div>
+                      )}
+
+                      {isOwnMessage && (
+                        <button
+                          onClick={() => deleteMessage(msg._id)}
+                          className="mt-1 text-xs text-red-500 opacity-0 group-hover:opacity-100 transition self-end hover:underline"
+                        >
+                          Delete
+                        </button>
+                      )}
+                    </div>
                   </div>
                 </div>
               );
